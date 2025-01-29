@@ -86,3 +86,6 @@ article {
 body.light-mode article {
     background: #f0f0f0;
 }
+.left-align {
+    text-align: left;
+}
