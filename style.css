@@ -33,6 +33,12 @@ nav a {
     margin: 0 15px;
 }
 
+body.light-mode nav a {
+    color: #121212;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
 /* Button styles */
 nav button {
     background: none;
