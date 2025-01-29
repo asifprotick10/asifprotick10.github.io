@@ -1,3 +1,5 @@
-document.querySelector('h1').addEventListener('click', function() {
-    alert('Welcome to Asif Islam\'s Website!');
+const toggleButton = document.getElementById('dark-mode-toggle');
+
+toggleButton.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
 });
