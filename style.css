@@ -94,7 +94,11 @@ body.light-mode .gallery-item {
     height: auto;
     border-radius: 8px;
 }
-
+.gallery-header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+}
 
 
 footer {
