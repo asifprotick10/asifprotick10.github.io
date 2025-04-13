@@ -68,6 +68,35 @@ main {
     width: 200px;
 }
 
+/* Gallery container */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 20px;
+    padding: 20px;
+}
+
+.gallery-item {
+    background-color: #1e1e1e;
+    padding: 15px;
+    border-radius: 10px;
+    color: #fff;
+    text-align: center;
+}
+
+body.light-mode .gallery-item {
+    background-color: #f0f0f0;
+    color: #121212;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+
+
 footer {
     margin-top: 20px;
     padding: 10px;
