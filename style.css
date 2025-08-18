@@ -65,7 +65,7 @@ main {
 
 .image-container img {
     border-radius: 10px;
-    width: 200px;
+    width: 400px;
     margin-left: 150px;
 }
 
@@ -118,4 +118,5 @@ body.light-mode article {
 .left-align {
     text-align: left;
 }
+
 
