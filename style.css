@@ -128,8 +128,8 @@ body.light-mode article {
 }
 
 .contact-icons a img {
-  width: 40px;
-  height: 40px;
+  width: 140px;
+  height: 140px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 50%;
 }
@@ -138,4 +138,5 @@ body.light-mode article {
   transform: scale(1.15);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
 
