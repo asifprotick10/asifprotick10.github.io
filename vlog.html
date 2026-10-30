@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vlog & Research Notes - Asif Islam</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Include MathJax for LaTeX mathematical formula rendering -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* Streamlined table styling for concise benchmark post */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        table.benchmark-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 15px;
+        }
+        table.benchmark-table th, table.benchmark-table td {
+            padding: 14px 16px;
+            border: 1px solid #333;
+        }
+        body.light-mode table.benchmark-table th, body.light-mode table.benchmark-table td {
+            border: 1px solid #ccc;
+        }
+        table.benchmark-table th {
+            background-color: #252525;
+            color: #ffffff;
+        }
+        body.light-mode table.benchmark-table th {
+            background-color: #e0e0e0;
+            color: #121212;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">about</a>
+        <a href="news.html">news</a>
+        <a href="publications.html">publications</a>
+        <a href="achievements.html">achievements</a>
+        <a href="vlog.html">vlog</a>
+        <a href="archive.html">archive</a>
+        <button id="dark-mode-toggle">🌙</button>
+    </nav>
+    
+    <main>
+        <div class="content" style="width: 85%; max-width: 900px; margin: 0 auto; text-align: left;">
+            
+            <h1>Do EEG Foundation Models Actually Beat Conventional Deep Learning?</h1>
+            <p style="color: #888;">October 30, 2026 | Research Notes & Vlogs</p>
+            <hr style="border: 0; height: 1px; background: #333; margin-bottom: 20px;">
+
+            <article style="width: 100%; margin: 0 0 20px 0;">
+                <p>In the rapidly evolving world of NeuroAI, pretrained foundation models have become the default talk of the town. Following massive successes in natural language processing and computer vision, architectures like LaBraM and REVE promise to revolutionize biomedical time-series analysis—particularly for electroencephalography (EEG).</p> 
+
+                <p>The core hypothesis sounds bulletproof: leverage massive self-supervised pretraining on diverse multi-terabyte EEG corpuses, fine-tune downstream, and watch performance skyrocket.</p> 
+
+                <p><em>But do they actually outperform tried-and-true conventional architectures when evaluated on rigorous, blind-split clinical benchmarks?</em></p> 
+
+                <p>To find out, I put state-of-the-art EEG foundation models head-to-head against classical models (Vanilla RNNs and CNN-BiLSTMs) using the Temple University Hospital EEG Seizure Corpus (<strong>TUSZ</strong>)—featuring strict subject-independent (leave-one-subject-out) validation and test splits to prevent data leakage.</p>
+            </article>
+
+            <article style="width: 100%; margin: 0 0 20px 0;">
+                <h2>The Experimental Setup</h2>
+                <p>To maintain strict parity, all models were evaluated on the same preprocessed TUSZ subsets:</p>
+                <ul>
+                    <li><strong>Sampling Rate:</strong> $200\,\text{Hz}$</li>
+                    <li><strong>Filtering:</strong> Bandpass filtered (BPF) from $0.5$ to $75/99.5\,\text{Hz}$, with $60\,\text{Hz}$ notch filtering (NF).</li>
+                    <li><strong>Segmentation:</strong> $5\,\text{second}$ non-overlapping windows.</li>
+                    <li><strong>Class Imbalance Mitigation:</strong> $20\%$ of background (non-seizure) data retained in training to maintain clinical realism without crashing models into majority-class triviality.</li>
+                </ul>
+            </article>
+
+            <article style="width: 100%; margin: 0 0 20px 0;">
+                <h2>Test Performance At-a-Glance</h2>
+                <div class="table-container">
+                    <table class="benchmark-table">
+                        <thead>
+                            <tr>
+                                <th>Model</th>
+                                <th>Training Strategy</th>
+                                <th>Test Accuracy (%)</th>
+                                <th>Test Macro-F1 (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Vanilla RNN</strong></td>
+                                <td>Scratch</td>
+                                <td>88.79</td>
+                                <td>66.26</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CNN-BiLSTM</strong></td>
+                                <td>Scratch</td>
+                                <td>93.12</td>
+                                <td>72.84</td>
+                            </tr>
+                            <tr>
+                                <td><strong>LaBraM</strong></td>
+                                <td>Fine-Tuning (FT)</td>
+                                <td>94.56</td>
+                                <td>80.39</td>
+                            </tr>
+                            <tr>
+                                <td><strong>REVE</strong></td>
+                                <td>Linear Probing (LP)</td>
+                                <td>84.50</td>
+                                <td>61.90</td>
+                            </tr>
+                            <tr>
+                                <td><strong>REVE</strong></td>
+                                <td>Fine-Tuning (FT)</td>
+                                <td>95.60</td>
+                                <td>77.35</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+
+            <article style="width: 100%; margin: 0 0 20px 0;">
+                <h2>Key Insights & Takeaways</h2>
+                <h3>1. Foundation Models Aren't "Plug-and-Play" Magic</h3>
+                <p>While <strong>REVE (FT)</strong> demonstrated strong generalization on test sets (achieving a solid $77.35\%$ Macro-F1), <strong>LaBraM (FT)</strong> exhibited aggressive overfitting early in training. Pretrained models require careful regularization, tailored learning rate warmups, and layer-wise decay.</p>
+
+                <h3>2. Fine-Tuning Beats Linear Probing Hands Down</h3>
+                <p>For REVE, shifting from linear probing to full fine-tuning yielded a massive jump in test Macro-F1 (from $61.90\%$ to $77.35\%$). Biomedical signals possess unique spectral-temporal signatures that rigid pretrained feature extractors fail to capture without adaptation.</p>
+
+                <h3>3. Classical Architectures Still Punch Above Their Weight</h3>
+                <p>The <strong>CNN-BiLSTM</strong> model proved remarkably resilient. By pairing convolutional feature extractors with bidirectional LSTMs, it bypassed the vanishing gradient issues plaguing the Vanilla RNN and handled full $5$-second windows natively.</p>
+            </article>
+
+            <article style="width: 100%; margin: 0 0 20px 0;">
+                <h2>Next Steps</h2>
+                <p>The journey doesn't stop here. Next up on my research board:</p>
+                <ul>
+                    <li>Implementing graph neural network (GNN) layers atop spatial EEG channels.</li>
+                    <li>Exploring self-supervised masked autoencoders specifically tailored for multi-channel cross-bicoherence features.</li>
+                </ul>
+                <p>Stay tuned for more updates from the lab!</p>
+            </article>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Asif Islam</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
