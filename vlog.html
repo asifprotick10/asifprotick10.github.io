@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vlog & Research Notes - Asif Islam</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Include MathJax for LaTeX mathematical formula rendering -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         /* Streamlined table styling for concise benchmark post */
         .table-container {
@@ -70,10 +67,10 @@
                 <h2>The Experimental Setup</h2>
                 <p>To maintain strict parity, all models were evaluated on the same preprocessed TUSZ subsets:</p>
                 <ul>
-                    <li><strong>Sampling Rate:</strong> $200\,\text{Hz}$</li>
-                    <li><strong>Filtering:</strong> Bandpass filtered (BPF) from $0.5$ to $75/99.5\,\text{Hz}$, with $60\,\text{Hz}$ notch filtering (NF).</li>
-                    <li><strong>Segmentation:</strong> $5\,\text{second}$ non-overlapping windows.</li>
-                    <li><strong>Class Imbalance Mitigation:</strong> $20\%$ of background (non-seizure) data retained in training to maintain clinical realism without crashing models into majority-class triviality.</li>
+                    <li><strong>Sampling Rate:</strong> 200 Hz</li>
+                    <li><strong>Filtering:</strong> Bandpass filtered (BPF) from 0.5 to 75/99.5 Hz, with 60 Hz notch filtering (NF).</li>
+                    <li><strong>Segmentation:</strong> 5-second non-overlapping windows.</li>
+                    <li><strong>Class Imbalance Mitigation:</strong> 20% of background (non-seizure) data retained in training to maintain clinical realism without crashing models into majority-class triviality.</li>
                 </ul>
             </article>
 
@@ -128,13 +125,13 @@
             <article style="width: 100%; margin: 0 0 20px 0;">
                 <h2>Key Insights & Takeaways</h2>
                 <h3>1. Foundation Models Aren't "Plug-and-Play" Magic</h3>
-                <p>While <strong>REVE (FT)</strong> demonstrated strong generalization on test sets (achieving a solid $77.35\%$ Macro-F1), <strong>LaBraM (FT)</strong> exhibited aggressive overfitting early in training. Pretrained models require careful regularization, tailored learning rate warmups, and layer-wise decay.</p>
+                <p>While <strong>REVE (FT)</strong> demonstrated strong generalization on test sets (achieving a solid 77.35% Macro-F1), <strong>LaBraM (FT)</strong> exhibited aggressive overfitting early in training. Pretrained models require careful regularization, tailored learning rate warmups, and layer-wise decay.</p>
 
                 <h3>2. Fine-Tuning Beats Linear Probing Hands Down</h3>
-                <p>For REVE, shifting from linear probing to full fine-tuning yielded a massive jump in test Macro-F1 (from $61.90\%$ to $77.35\%$). Biomedical signals possess unique spectral-temporal signatures that rigid pretrained feature extractors fail to capture without adaptation.</p>
+                <p>For REVE, shifting from linear probing to full fine-tuning yielded a massive jump in test Macro-F1 (from 61.90% to 77.35%). Biomedical signals possess unique spectral-temporal signatures that rigid pretrained feature extractors fail to capture without adaptation.</p>
 
                 <h3>3. Classical Architectures Still Punch Above Their Weight</h3>
-                <p>The <strong>CNN-BiLSTM</strong> model proved remarkably resilient. By pairing convolutional feature extractors with bidirectional LSTMs, it bypassed the vanishing gradient issues plaguing the Vanilla RNN and handled full $5$-second windows natively.</p>
+                <p>The <strong>CNN-BiLSTM</strong> model proved remarkably resilient. By pairing convolutional feature extractors with bidirectional LSTMs, it bypassed the vanishing gradient issues plaguing the Vanilla RNN and handled full 5-second windows natively.</p>
             </article>
 
             <article style="width: 100%; margin: 0 0 20px 0;">
@@ -151,7 +148,7 @@
     </main>
 
     <footer>
-        <p>© 2025 Asif Islam</p>
+        <p>© 2026 Asif Islam</p>
     </footer>
 
     <script src="script.js"></script>
