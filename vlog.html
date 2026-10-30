@@ -54,7 +54,7 @@
             <hr style="border: 0; height: 1px; background: #333; margin-bottom: 20px;">
 
             <article style="width: 100%; margin: 0 0 20px 0;">
-                <p>In the rapidly evolving world of NeuroAI, pretrained foundation models have become the default talk of the town. Following massive successes in natural language processing and computer vision, architectures like LaBraM and REVE promise to revolutionize biomedical time-series analysis—particularly for electroencephalography (EEG).</p> 
+                <p>In the rapidly evolving world of NeuroAI, pretrained foundation models have become the default talk of the town. Following massive successes in natural language processing and computer vision, architectures like LaBraM and REVE promise to revolutionize biomedical time-series analysis, particularly for electroencephalography (EEG).</p> 
 
                 <p>The core hypothesis sounds bulletproof: use massive self-supervised pretraining on diverse multi-terabyte EEG corpuses, fine-tune downstream, and watch performance skyrocket.</p> 
 
@@ -68,7 +68,7 @@
                 <p>To maintain strict parity, all models were evaluated on the same preprocessed TUSZ subsets:</p>
                 <ul>
                     <li><strong>Sampling Rate:</strong> 200 Hz</li>
-                    <li><strong>Filtering:</strong> Bandpass filtered (BPF) from 0.5 to 75/99.5 Hz, with 60 Hz notch filtering (NF).</li>
+                    <li><strong>Filtering:</strong> Bandpass filtered (BPF) from 0.5 to 99.5 Hz, with 60 Hz notch filtering (NF).</li>
                     <li><strong>Segmentation:</strong> 5-second non-overlapping windows.</li>
                     <li><strong>Class Imbalance Mitigation:</strong> 20% of background (non-seizure) data retained in training to maintain clinical realism without crashing models into majority-class triviality.</li>
                 </ul>
