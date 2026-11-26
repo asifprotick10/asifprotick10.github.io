@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Highlight the current page in the nav
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('nav a[href]').forEach((link) => {
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+        }
+    });
+
     const toggleButton = document.getElementById('dark-mode-toggle');
     const isLightMode = localStorage.getItem('darkMode') === 'disabled';
 
