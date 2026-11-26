@@ -17,10 +17,16 @@ files directly and push.
 ## Page structure
 
 Every page (`index.html`, `news.html`, `publications.html`, `vlog.html`,
-`achievements.html`, `archive.html`) repeats the same `<nav>` block verbatim
-(links to all six pages + `#dark-mode-toggle` button) and loads the same
-`style.css` + `script.js`. There's no templating, so a nav change must be
-copy-pasted into all six files by hand.
+`achievements.html`, `archive.html`) has an empty `<nav id="site-nav"></nav>`
+placeholder and loads the same `style.css` + `script.js`. The actual nav
+markup (links to all six pages + `#dark-mode-toggle` button) lives in one
+place — the `NAV_HTML` template string at the top of `script.js` — which
+gets injected into `#site-nav` on `DOMContentLoaded`, before the
+active-link-highlight and dark-mode logic run. To change the nav (add a
+page, reorder links, etc.), edit `NAV_HTML` once in `script.js`; don't touch
+individual HTML files. Trade-off: the nav is briefly absent until JS runs
+(fine for this site, since dark mode already depends on JS) and a no-JS
+visitor would see no nav at all.
 
 - `index.html` — homepage/about. Bio, research bullets, contact icons,
   two CTA buttons (`.btn.btn-primary` / `.btn.btn-secondary`).
@@ -58,8 +64,6 @@ copy-pasted into all six files by hand.
 
 ## Known inconsistencies (not yet cleaned up)
 
-- Footer copyright year differs by page (`© 2025` vs `© 2026`) — hasn't
-  been unified; ask before changing since it may be intentional per-page.
-- Nav markup is duplicated per page (see above) rather than shared via
-  include/template — a real templating step would need a static-site
-  generator, which hasn't been requested.
+- Footer `<p>© YEAR Asif Islam</p>` is still duplicated per page (unlike
+  nav, it wasn't templated) — currently unified to 2026 everywhere, but a
+  future year bump means editing all six files again.
