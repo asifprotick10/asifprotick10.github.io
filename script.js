@@ -13,6 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const navContainer = document.getElementById('site-nav');
     if (navContainer) navContainer.innerHTML = NAV_HTML;
 
+    // Inject the footer, with the copyright year computed so it never goes stale
+    const footerContainer = document.getElementById('site-footer');
+    if (footerContainer) {
+        footerContainer.innerHTML = `<p>© ${new Date().getFullYear()} Asif Islam</p>`;
+    }
+
     // Highlight the current page in the nav
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('nav a[href]').forEach((link) => {

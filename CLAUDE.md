@@ -62,8 +62,7 @@ visitor would see no nav at all.
 - Dark mode is the default; `body.light-mode` overrides. Toggle state
   persists via `localStorage` (`script.js`).
 
-## Known inconsistencies (not yet cleaned up)
-
-- Footer `<p>© YEAR Asif Islam</p>` is still duplicated per page (unlike
-  nav, it wasn't templated) — currently unified to 2026 everywhere, but a
-  future year bump means editing all six files again.
+The footer works the same way: each page has an empty
+`<footer id="site-footer"></footer>`, and `script.js` injects
+`© <current year> Asif Islam` into it using `new Date().getFullYear()` —
+so the copyright year is always correct and never needs manual editing.
